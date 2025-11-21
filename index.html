@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Farsa da Fraude | Webinar para Terapeutas - Gislene de Moura</title>
+    <!-- Carregamento do Tailwind CSS para um design moderno e responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos customizados para a estética e tipografia */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* light blue-50 */
+        }
+        .container-card {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .text-shadow-custom {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .gradient-bg {
+            /* Cor de destaque: Combinação de azul escuro e um toque de magenta/roxo */
+            background: linear-gradient(135deg, #1e3a8a 0%, #6d28d9 100%); 
+        }
+        /* Definição do botão verde e pulsante (Animação de pulso) */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); /* Green-500 */
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+        }
+        .cta-button {
+            /* Botão verde */
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%); /* Green-500 para Green-600 */
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite; /* Aplica a animação de pulso */
+            line-height: 1.25; /* Ajuste para o texto caber em 2 linhas no mobile */
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.5); /* Sombra mais escura */
+        }
+        /* Cor de destaque do preço: Azul Escuro (Autoridade) */
+        .tag-price {
+            background-color: #bfdbfe; /* Blue-200 */
+            color: #1e3a8a; /* Blue-800 */
+        }
+        /* Responsividade para o contador */
+        .countdown-item {
+            min-width: 60px;
+        }
+        @media (min-width: 640px) {
+            .countdown-item {
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    
+    <!-- Link de Checkout da Hotmart -->
+    <a id="checkout-link" href="https://pay.hotmart.com/X103062963B" class="hidden"></a>
+
+    <div class="gradient-bg py-16 sm:py-24">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight text-shadow-custom">
+                A FARSA DA FRAUDE
+            </h1>
+            <h2 class="text-xl sm:text-2xl lg:text-3xl font-light text-indigo-200 mb-8">
+                O Sistema de 3 Passos para Terapeutas Competentes que <span class="font-semibold">(ainda) se sentem uma Fraude.</span>
+            </h2>
+
+            <div class="bg-white container-card p-6 sm:p-8 rounded-xl max-w-2xl mx-auto">
+                <p class="text-gray-700 text-lg mb-6">
+                    Chega de adiar seu crescimento. Neste Webinar, vou te provar que a Síndrome da Impostora <b>NÃO é falta de capacidade técnica</b>, mas sim um <b>vício emocional</b> que rouba o seu lucro.
+                </p>
+                
+                <!-- Data e Contador -->
+                <div class="mb-6 bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-lg">
+                    <p class="text-xl font-bold text-gray-800 mb-2">AO VIVO - Sem Replay!</p>
+                    <p class="text-2xl font-extrabold text-red-600">13 de DEZEMBRO, às 9h30 (Brasília)</p>
+                </div>
+                
+                <div id="countdown" class="flex justify-center space-x-2 sm:space-x-4 mb-8">
+                    <!-- Componentes do Contador (Preenchidos via JS) -->
+                    <div class="countdown-item bg-gray-100 text-gray-800 p-2 rounded-lg">
+                        <span id="days" class="block text-2xl sm:text-3xl font-extrabold">00</span>
+                        <span class="block text-xs font-medium uppercase">Dias</span>
+                    </div>
+                    <div class="countdown-item bg-gray-100 text-gray-800 p-2 rounded-lg">
+                        <span id="hours" class="block text-2xl sm:text-3xl font-extrabold">00</span>
+                        <span class="block text-xs font-medium uppercase">Horas</span>
+                    </div>
+                    <div class="countdown-item bg-gray-100 text-gray-800 p-2 rounded-lg">
+                        <span id="minutes" class="block text-2xl sm:text-3xl font-extrabold">00</span>
+                        <span class="block text-xs font-medium uppercase">Mins</span>
+                    </div>
+                    <div class="countdown-item bg-gray-100 text-gray-800 p-2 rounded-lg">
+                        <span id="seconds" class="block text-2xl sm:text-3xl font-extrabold">00</span>
+                        <span class="block text-xs font-medium uppercase">Segs</span>
+                    </div>
+                </div>
+
+                <!-- Preço e CTA - Formatação em 2 linhas e Cor Azul Aplicadas -->
+                <div class="flex flex-col items-center justify-center mb-6">
+                    <!-- Linha 1: De R$ 197,00 por apenas -->
+                    <!-- Aumentado o mb-4 (espaçamento maior) -->
+                    <p class="text-xl sm:text-2xl font-black text-gray-900 mb-4 text-center leading-tight">
+                        <span class="text-lg text-gray-600 line-through mr-1">De R$ 197,00</span> por apenas
+                    </p>
+                    <!-- Linha 2: R$ 37,00 (Tamanho reduzido no mobile para caber em 1 linha) -->
+                    <p class="text-5xl sm:text-7xl font-extrabold text-gray-900 leading-none">
+                        <span class="tag-price px-4 py-2 rounded-xl shadow-md leading-none">R$ 37,00</span>
+                    </p>
+                </div>
+                
+                <!-- Aviso de Escassez (100 Vagas) - Cor de alerta alterada para Laranja -->
+                <div class="mb-6 bg-orange-100 border-l-4 border-orange-500 p-4 rounded-lg">
+                    <p class="text-xl font-bold text-orange-800">ATENÇÃO: Apenas 100 Vagas Disponíveis!</p>
+                    <p class="text-sm text-orange-700">O preço promocional de R$ 37,00 será encerrado assim que as vagas forem preenchidas. Garanta a sua agora.</p>
+                </div>
+
+                <!-- Botão CTA Verde e Pulsante com ajuste para 2 linhas no mobile -->
+                <button class="cta-button w-full sm:w-3/4 lg:w-2/3 mx-auto text-white font-extrabold py-4 px-8 rounded-xl text-xl uppercase shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-300 transform transition duration-300" onclick="redirectToCheckout()">
+                    QUERO MINHA VAGA E VENCER A SÍNDROME DA IMPOSTORA
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Dor e Promessa -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">Colega Terapeuta, vamos ser honestas:</h3>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Coluna da Dor -->
+            <div class="space-y-4">
+                <div class="p-6 bg-red-50 border-l-4 border-red-500 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-red-800">💔 O Desafio (A Síndrome da Impostora na Prática):</p>
+                    <ul class="mt-2 text-gray-700 list-disc list-inside space-y-2">
+                        <li>Você sente <b>o pânico gelado</b> ao dar o preço da sessão?</li>
+                        <li>Está <b>exausta</b> com a agenda lotada, mas se sente culpada ao pensar em reajustar o valor?</li>
+                        <li>Investiu em <b>vários cursos e conhecimento</b>, mas continua insegura e com o mesmo faturamento estagnado?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Coluna da Transformação -->
+            <div class="space-y-4">
+                <div class="p-6 bg-green-50 border-l-4 border-green-500 rounded-lg shadow-md">
+                    <p class="font-semibold text-lg text-green-800">✨ A Transformação (A Solução que Você Precisa):</p>
+                    <ul class="mt-2 text-gray-700 list-disc list-inside space-y-2">
+                        <li>Assumir sua postura de <b>autoridade</b> e CEO do seu espaço de atendimento.</li>
+                        <li>Saber como <b>cobrar o preço justo</b> sem medo de parecer "mercenária".</li>
+                        <li>Ter <b>tranquilidade financeira</b> para cuidar de si mesma e evitar o burnout.</li>
+                        <li>Sair com um <b>plano claro</b> para iniciar 2026 com lista de espera.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção O Sistema de 3 Passos -->
+    <div class="bg-gray-100 py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-extrabold text-gray-900 mb-10 text-center">
+                O Sistema de 3 Passos que Vence a Impostora
+            </h3>
+
+            <div class="space-y-8">
+                <!-- Segredo 1 -->
+                <div class="flex items-start space-x-4">
+                    <span class="flex-shrink-0 text-3xl font-bold text-red-600">1.</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900">A Maldição do "Eterno Estudante"</h4>
+                        <p class="mt-1 text-gray-600">
+                            Por que mais um <b>curso ou técnica</b> aumenta sua insegurança, e como usar o seu <b>Inventário da Competência</b> para validar seu preço hoje. O antídoto não é mais teoria, é <b>Reconhecimento de Resultado</b>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Segredo 2 -->
+                <div class="flex items-start space-x-4">
+                    <span class="flex-shrink-0 text-3xl font-bold text-red-600">2.</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900">O Mito da "Terapeuta Mercenária"</h4>
+                        <p class="mt-1 text-gray-600">
+                            Como desvincular o lucro da culpa: <b>Lucro é Autocuidado Profissional</b>. Cobrar bem é a única forma de você continuar saudável e disponível para ajudar mais pessoas a longo prazo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Segredo 3 -->
+                <div class="flex items-start space-x-4">
+                    <span class="flex-shrink-0 text-3xl font-bold text-red-600">3.</span>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900">A Armadilha da "Supervisora de Si Mesma"</h4>
+                        <p class="mt-1 text-gray-600">
+                            Por que tentar ser perfeita leva ao <i>Burnout</i>. Você precisa parar de agir como a "amiga que dá conselhos" e assumir a cadeira de CEO. <b>Autoridade é colocar limites.</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-center text-lg font-semibold text-gray-700 border-t pt-6">
+                Você irá ganhar um <b>Diagnóstico de Posicionamento</b> e vai entender como calar a sua impostora, com fatos.
+            </p>
+            
+            <!-- Botão CTA Verde e Pulsante -->
+            <button class="cta-button w-full sm:w-2/3 mx-auto text-white font-extrabold py-4 px-8 rounded-xl text-xl uppercase shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-300 mt-10 block" onclick="redirectToCheckout()">
+                GARANTIR MINHA VAGA AGORA - R$ 37,00
+            </button>
+        </div>
+    </div>
+
+    <!-- Seção Sobre a Especialista -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+        <h3 class="text-3xl font-extrabold text-gray-900 mb-8">Sobre a Especialista</h3>
+        
+        <div class="flex flex-col items-center md:flex-row md:space-x-8">
+            <div class="flex-shrink-0 mb-6 md:mb-0">
+                <img src="https://wp.superadesafio.com.br/wp-content/uploads/2025/06/Gi_fundo_transp.webp" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/200x200/4f46e5/ffffff?text=Gislene+de+Moura'"
+                     alt="" 
+                     class="w-48 h-48 object-cover rounded-full mx-auto border-4 border-indigo-600 shadow-xl">
+            </div>
+            <div class="text-left">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">Gislene de Moura</h4>
+                <p class="text-lg font-medium text-red-600 mb-4">Posicionamento para Negócios | Mentora de Terapeutas</p>
+                <p class="text-gray-600 italic">
+                    [Placeholder] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Gislene ajuda terapeutas a transformarem a insegurança em um negócio próspero e ético, garantindo que o lucro financie seus sonhos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer CTA -->
+    <footer class="gradient-bg py-8 mt-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h4 class="text-2xl font-bold text-white mb-4">
+                Não deixe a insegurança roubar o brilho do trabalho lindo que você faz.
+            </h4>
+            <!-- Botão CTA Verde e Pulsante -->
+            <button class="cta-button text-white font-extrabold py-3 px-10 rounded-xl text-lg uppercase shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-green-300 transform transition duration-300" onclick="redirectToCheckout()">
+                ÚLTIMAS VAGAS POR R$ 37,00
+            </button>
+            <p class="text-indigo-200 mt-4 text-sm">
+                Webinar AO VIVO, sem gravação para replay.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Função de redirecionamento para o link de checkout
+        const CHECKOUT_URL = "https://pay.hotmart.com/X103062963B";
+
+        function redirectToCheckout() {
+            window.location.href = CHECKOUT_URL;
+        }
+
+        // Função para atualizar o contador regressivo
+        function updateCountdown() {
+            // Data do evento: 13 de Dezembro de 2025, às 9:30:00 (Fuso de Brasília, UTC-3)
+            // Use 2025 pois a data 13/12/2025 está no roteiro
+            const eventDate = new Date("December 13, 2025 09:30:00 GMT-03:00").getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Formatação com zero à esquerda
+            const format = (num) => String(num).padStart(2, '0');
+
+            if (distance > 0) {
+                document.getElementById("days").innerHTML = format(days);
+                document.getElementById("hours").innerHTML = format(hours);
+                document.getElementById("minutes").innerHTML = format(minutes);
+                document.getElementById("seconds").innerHTML = format(seconds);
+            } else {
+                // Evento acabou/está no ar
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = '<p class="text-2xl font-extrabold text-red-600">EVENTO NO AR OU ENCERRADO!</p>';
+                // Desabilitar o botão de compra
+                document.querySelectorAll('.cta-button').forEach(button => {
+                    button.disabled = true;
+                    button.classList.remove('cta-button', 'hover:shadow-xl', 'animate-pulse');
+                    button.classList.add('bg-gray-400', 'cursor-not-allowed', 'shadow-none');
+                    button.textContent = 'EVENTO ENCERRADO';
+                    button.onclick = null; // Remove a ação de clique
+                });
+            }
+        }
+
+        // Atualiza o contador a cada segundo
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Chamada inicial para evitar delay na exibição
+        updateCountdown();
+        
+    </script>
+</body>
+</html>
